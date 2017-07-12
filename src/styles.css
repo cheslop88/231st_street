@@ -1,4 +1,33 @@
 body {
-  background: url("assets/images/art-nouveau-wallpaper.png") repeat center;
+  background: #fff;
   font-family: 'Julius Sans One', sans-serif;
+}
+.container {
+  padding: 2.5% 5%;
+}
+.container.no-padding {
+  padding: 0;
+}
+.fill {
+  background-image: url('/assets/images/banners/banner_1.jpg');
+}
+.box {
+  margin-bottom: 20px;
+  padding: 30px 15px;
+  background: #fff;
+  background: rgba(255,255,255,0.9);
+}
+.btn {
+  background-color: #fff;
+  color: #000;
+}
+.offer-box {
+  background-color: #000;
+  color: #fff;
+}
+.main-content {
+  text-align: center;
+}
+.main-content h4 {
+  font-style: italic;
 }

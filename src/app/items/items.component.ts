@@ -4,58 +4,55 @@ import { ItemService } from './item.service';
 
 
 @Component({
-  selector: 'app-items',
+  selector: 'cocktail-menu',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
+
 export class ItemsComponent implements OnInit {
   items: Item[];
-  item = Item;
-  showHide: boolean;
 
-  changeShowStatus() {
-    this.showHide = !this.showHide;
-  }
-
-  constructor(private itemService: ItemService) { this.showHide = true; }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
 
     this.itemService.getItems()
     .subscribe(itemsData => this.items = itemsData);
   }
+  /* Function to show total cost of ordered items */
   totalCost() {
     let sum = 0;
     if (this.items) {
       if (Array.isArray(this.items)) {
         for (const item of this.items) {
           if (item.inBasket) {
-            if (item.special_offer) {
-              sum += item.quantity * item.special_offer_price;
-            } else {
               sum += item.quantity * item.price;
-            }
           }
         }
       }
     }
     return sum;
   }
-
-  buyItem(item) {
-      item.inBasket = true;
+  /* Function to show total quantity of ordered items */
+  totalQuantity() {
+    let sum = 0;
+    if (this.items) {
+      if (Array.isArray(this.items)) {
+        for (const item of this.items) {
+          if (item.inBasket) {
+              sum += item.quantity;
+          }
+        }
+      }
     }
-
-
-  cancelItem(item) {
-    item.inBasket = false;
+    return sum;
   }
-
+  /* Function to increase quantity on click */
   upQuantity(item) {
     if (item.quantity < item.stock_available) item.quantity++;
     if (item.quantity > 0) item.inBasket = true;
   }
-
+  /* Function to increase quantity on click */
   downQuantity(item) {
     if (item.quantity != 0) item.quantity--;
     if (item.quantity === 0) item.inBasket = false;
